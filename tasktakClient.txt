@@ -1,0 +1,383 @@
+import React, {useEffect, useState} from 'react';
+import {View, TouchableOpacity, Text, ScrollView, StyleSheet} from 'react-native';
+import {AppTheme} from '../AppTheme/AppTheme';
+import {Navigation} from "react-native-navigation";
+import { APP_URL } from '../Components/Api';
+
+const tabsData = [
+    {id: 1, title: "Profile"},
+    {id: 2, title: "Contacts"},
+    {id: 8, title: "Projects"},
+    {id: 5, title: "Invoices"},
+    {id: 9, title: "Taks"},
+    {id: 3, title: "Notes"},
+    {id: 4, title: "Statement"},
+    {id: 6, title: "Payments"},
+    {id: 7, title: "Proposals"},
+];
+
+const ViewClient = (props) => {
+    const {clientDetail} = props;
+    const [tabActive, setTabActive] = useState(0);
+    const [contactsData, setContactsData] = useState([]);
+    const [projectData, setProjectData] = useState([]);
+
+    useEffect(() => {
+        getClientProjects();
+    }, []);
+    const handleNewCleintPressed = () => {
+        Navigation.push("AppStack", {
+            component: {
+                name: 'EditClient',
+                passProps: {
+                    clientDetail: clientDetail,
+                },
+            },
+        });
+    };
+    const getClientProjects = () => {
+        try {
+            var myHeaders = new Headers();
+
+            var requestOptions = {
+                method: 'GET',
+                headers: myHeaders,
+                redirect: 'follow'
+            };
+
+            fetch(APP_URL.BaseUrl + "/api/Clients/getprojects?clientid=205", requestOptions)
+            .then((response) => response.json())
+            .then((result) => {
+                if (result?.code === 200) {
+                    setProjectData(result?.data);
+                }
+            }).catch((error) => {
+                console.log('error', error);
+            });
+        } catch (error) {
+            console.log(error?.message);
+        }
+    };
+   
+    return (
+        <ScrollView>
+            <View style={{ flex: 1, marginVertical: '5%'}}>
+                <View style={{ flexDirection: "row", paddingHorizontal: 20 }}>
+                    <View style={{flex:1,justifyContent:"center"}}>
+                        <Text style={{ fontSize: 20 }}>Client</Text>
+                    </View>
+                    <TouchableOpacity style={{flex: 1, justifyContent: "center", alignItems: "flex-end", }} onPress={()=> handleNewCleintPressed()}>
+                        <Text style={{ fontSize: 20, color: AppTheme.PrimaryColor }}>Edit Client</Text>
+                    </TouchableOpacity>
+                </View>
+                <ScrollView
+                    horizontal
+                    showsHorizontalScrollIndicator={false}>
+                    {tabsData?.map((val, key) => {
+                        return (
+                            <TouchableOpacity
+                                key={key}
+                                activeOpacity={.7}
+                                onPress={() => setTabActive(key)}
+                                style={{marginTop:16,backgroundColor:tabActive===key?"#EEE":"transparent",marginLeft:key===0?20:0,borderRadius:tabActive===key?6:0,paddingHorizontal:20,paddingVertical:10}}>
+                                <Text style={{fontSize:13,color:tabActive===key?"#4967ff":"#000",fontFamily:'Prompt-Medium'}}>
+                                    {val?.title}
+                                </Text>
+                            </TouchableOpacity>
+                        )
+                    })}
+                </ScrollView>
+                {tabActive===0?
+                    <View style={{paddingHorizontal:20}}>
+                        <View style={{marginTop: "4%", paddingTop: "4%",borderTopColor:"#ccc", borderTopWidth:1}}>
+                            <Text style={{ fontSize: 20, fontWeight:"bold", color: AppTheme.PrimaryColor }}>Client Detail</Text>
+                        </View>
+                        <View style={{flexDirection:'row',paddingTop: "6%"}}>
+                            <View style={{flex:1,justifyContent:"center"}}>
+                                <Text style={{ fontSize: 16, color: AppTheme.PrimaryColor }}>Company Name:</Text>
+                                <Text style={{ fontSize: 14, textTransform: 'capitalize' }}>{clientDetail?.company === null ? "------" : clientDetail?.company}</Text>
+                            </View>
+                            <View style={{flex:1,justifyContent:"center"}}>
+                                <Text style={{ fontSize: 16, color: AppTheme.PrimaryColor }}>Phone Number:</Text>
+                                <Text style={{ fontSize: 14, textTransform: 'capitalize' }}>{clientDetail?.phonenumber === null ? "------" : clientDetail?.phonenumber}</Text>
+                            </View>
+                        </View>
+                        <View style={{flexDirection:'row',paddingTop: "8%"}}>
+                            <View style={{flex:1,}}>
+                                <Text style={{ fontSize: 16, color: AppTheme.PrimaryColor }}>Website:</Text>
+                                <Text style={{ fontSize: 14, textTransform: 'capitalize' }}>{clientDetail?.website === null ? "------" : clientDetail?.website}</Text>
+                            </View>
+                            <View style={{flex:1,}}>
+                                <Text style={{ fontSize: 16, color: AppTheme.PrimaryColor }}>Address:</Text>
+                                <Text style={{ fontSize: 14, textTransform: 'capitalize' }}>{clientDetail?.address === null ? "------" : clientDetail?.address}</Text>
+                            </View>
+                        </View>
+                        <View style={{flexDirection:'row',paddingTop: "8%"}}>
+                            <View style={{flex:1,}}>
+                                <Text style={{ fontSize: 16, color: AppTheme.PrimaryColor }}>City:</Text>
+                                <Text style={{ fontSize: 14, textTransform: 'capitalize' }}>{clientDetail?.city === null ? "------" : clientDetail?.city}</Text>
+                            </View>
+                            <View style={{flex:1,}}>
+                                <Text style={{ fontSize: 16, color: AppTheme.PrimaryColor }}>State:</Text>
+                                <Text style={{ fontSize: 14, textTransform: 'capitalize' }}>{clientDetail?.state === null ? "------" : clientDetail?.state}</Text>
+                            </View>
+                        </View>
+                        <View style={{flexDirection:'row',paddingTop: "8%"}}>
+                            <View style={{flex:1,}}>
+                                <Text style={{ fontSize: 16, color: AppTheme.PrimaryColor }}>Zip:</Text>
+                                <Text style={{ fontSize: 14, textTransform: 'capitalize' }}>{clientDetail?.zip === null ? "------" : clientDetail?.zip}</Text>
+                            </View>
+                        </View>
+                        <View style={{marginTop: "4%", paddingTop: "4%",borderTopColor:"#ccc", borderTopWidth:1}}>
+                            <Text style={{ fontSize: 20, fontWeight:"bold", color: AppTheme.PrimaryColor }}>Shipping Detail</Text>
+                        </View>
+                        <View style={{flexDirection:'row',paddingTop: "6%"}}>
+                            <View style={{flex:1,justifyContent:"center"}}>
+                                <Text style={{ fontSize: 16, color: AppTheme.PrimaryColor }}>Shipping Country:</Text>
+                                <Text style={{ fontSize: 14, textTransform: 'capitalize' }}>{clientDetail?.shipping_country === null ? "------" : clientDetail?.shipping_country}</Text>
+                            </View>
+                            <View style={{flex:1,justifyContent:"center"}}>
+                                <Text style={{ fontSize: 16, color: AppTheme.PrimaryColor }}>Shipping City:</Text>
+                                <Text style={{ fontSize: 14, textTransform: 'capitalize' }}>{clientDetail?.shipping_city === null ? "------" : clientDetail?.shipping_city}</Text>
+                            </View>
+                        </View>
+                        <View style={{flexDirection:'row',paddingTop: "6%"}}>
+                            <View style={{flex:1,justifyContent:"center"}}>
+                                <Text style={{ fontSize: 16, color: AppTheme.PrimaryColor }}>Shipping State:</Text>
+                                <Text style={{ fontSize: 14, textTransform: 'capitalize' }}>{clientDetail?.shipping_state === null ? "------" : clientDetail?.shipping_state}</Text>
+                            </View>
+                            <View style={{flex:1,justifyContent:"center"}}>
+                                <Text style={{ fontSize: 16, color: AppTheme.PrimaryColor }}>Shipping Street:</Text>
+                                <Text style={{ fontSize: 14, textTransform: 'capitalize' }}>{clientDetail?.shipping_street === null ? "------" : clientDetail?.shipping_street}</Text>
+                            </View>
+                        </View>
+                        <View style={{flexDirection:'row',paddingTop: "6%"}}>
+                            <View style={{flex:1,justifyContent:"center"}}>
+                                <Text style={{ fontSize: 16, color: AppTheme.PrimaryColor }}>Shipping Zip:</Text>
+                                <Text style={{ fontSize: 14, textTransform: 'capitalize' }}>{clientDetail?.shipping_zip === null ? "------" : clientDetail?.shipping_zip}</Text>
+                            </View>
+                        </View>
+                        <View style={{marginTop: "4%", paddingTop: "4%",borderTopColor:"#ccc", borderTopWidth:1}}>
+                            <Text style={{ fontSize: 20, fontWeight:"bold", color: AppTheme.PrimaryColor }}>Billing Detail</Text>
+                        </View>
+                        <View style={{flexDirection:'row',paddingTop: "6%"}}>
+                            <View style={{flex:1,justifyContent:"center"}}>
+                                <Text style={{ fontSize: 16, color: AppTheme.PrimaryColor }}>Billing Country:</Text>
+                                <Text style={{ fontSize: 14, textTransform: 'capitalize' }}>{clientDetail?.billing_country === null ? "------" : clientDetail?.billing_country}</Text>
+                            </View>
+                            <View style={{flex:1,justifyContent:"center"}}>
+                                <Text style={{ fontSize: 16, color: AppTheme.PrimaryColor }}>Billing City:</Text>
+                                <Text style={{ fontSize: 14, textTransform: 'capitalize' }}>{clientDetail?.billing_city === null ? "------" : clientDetail?.billing_city}</Text>
+                            </View>
+                        </View>
+                        <View style={{flexDirection:'row',paddingTop: "6%"}}>
+                            <View style={{flex:1,justifyContent:"center"}}>
+                                <Text style={{ fontSize: 16, color: AppTheme.PrimaryColor }}>Billing State:</Text>
+                                <Text style={{ fontSize: 14, textTransform: 'capitalize' }}>{clientDetail?.billing_state === null ? "------" : clientDetail?.billing_state}</Text>
+                            </View>
+                            <View style={{flex:1,justifyContent:"center"}}>
+                                <Text style={{ fontSize: 16, color: AppTheme.PrimaryColor }}>Billing Street:</Text>
+                                <Text style={{ fontSize: 14, textTransform: 'capitalize' }}>{clientDetail?.billing_street === null ? "------" : clientDetail?.billing_street}</Text>
+                            </View>
+                        </View>
+                        <View style={{flexDirection:'row',paddingTop: "6%"}}>
+                            <View style={{flex:1,justifyContent:"center"}}>
+                                <Text style={{ fontSize: 16, color: AppTheme.PrimaryColor }}>Billing Zip:</Text>
+                                <Text style={{ fontSize: 14, textTransform: 'capitalize' }}>{clientDetail?.billing_zip === null ? "------" : clientDetail?.billing_zip}</Text>
+                            </View>
+                        </View>
+                    </View>
+                :tabActive===1?
+                    <View>
+                        <View style={styles.tableHeaderMain}>
+                            <View style={{ flex: .5, justifyContent: 'center' }}>
+                                <Text style={styles.tableHeaderText}>Name</Text>
+                            </View>
+                            <View style={{ flex: .5, justifyContent: 'center' }}>
+                                <Text style={styles.tableHeaderText}>Email</Text>
+                            </View>
+                            <View style={{ flex: .5, justifyContent: 'center' }}>
+                                <Text style={styles.tableHeaderText}>Role</Text>
+                            </View>
+                            <View style={{ flex: .5, justifyContent: 'center' }}>
+                                <Text style={styles.tableHeaderText}>Phone</Text>
+                            </View>
+                            <View style={{ flex: .5, justifyContent: 'center' }}>
+                                <Text style={styles.tableHeaderText}>Active</Text>
+                            </View>
+                            <View style={{ flex: .5, justifyContent: 'center' }}>
+                                <Text style={styles.tableHeaderText}>Last Login</Text>
+                            </View>
+                        </View>
+                        {contactsData?.map((val, key) => {
+                            const even = key % 2 == 0;
+                            const lastIndex = contactsData?.length - 1 === key;
+                            return (
+                                <View
+                                    key={key}
+                                    style={[styles.tableRowMain, {
+                                        borderBottomLeftRadius: lastIndex ? 8 : 0,
+                                        borderBottomRightRadius: lastIndex ? 8 : 0,
+                                        backgroundColor: even ? "rgba(0,0,0,.05)" : "#FFF",
+                                    }]}>
+                                    <View style={{ flex: .5, justifyContent: 'center' }}>
+                                        <Text style={styles.tableRowText}>
+                                            {val?.name}
+                                        </Text>
+                                    </View>
+                                    <View style={{ flex: .5, justifyContent: 'center' }}>
+                                        <Text style={styles.tableRowText}>
+                                            {val?.status === "1" ? "Not Started" : 
+                                            val?.status === "2" ? "Awaiting Feedback" :
+                                            val?.status === "3" ? "Testing" :
+                                            val?.status === "4" ? "Inprogess" :
+                                            val?.status === "5" ? "Completed" :
+                                            val?.status === "6" ? "On Hold" : null}
+                                        </Text>
+                                    </View>
+                                    <View style={{ flex: .5, justifyContent: 'center' }}>
+                                        <Text style={styles.tableRowText}>
+                                            {val?.startdate}
+                                        </Text>
+                                    </View>
+                                    <View style={{ flex: .5, justifyContent: 'center' }}>
+                                        <Text style={styles.tableRowText}>
+                                            {val?.duedate}
+                                        </Text>
+                                    </View>
+                                    <View style={{ flex: .5, justifyContent: 'center' }}>
+                                        <Text style={styles.tableRowText}>
+                                            {/* {val?.note} */}
+                                        </Text>
+                                    </View>
+                                    <View style={{ flex: .5, justifyContent: 'center' }}>
+                                        <Text style={styles.tableRowText}>
+                                            {val?.priority === "1" ? "Low" :
+                                            val?.priority === "2" ? "Medium" :
+                                            val?.priority === "3" ? "High" :
+                                            val?.priority === "4" ? "Urgent" : null}
+                                        </Text>
+                                    </View>
+                                </View>
+                            )
+                        })}
+                    </View>
+                :tabActive===2?
+                    <View>
+                        <View style={styles.tableHeaderMain}>
+                            <View style={{ flex: .5, justifyContent: 'center' }}>
+                                <Text style={styles.tableHeaderText}>Name</Text>
+                            </View>
+                            <View style={{ flex: .5, justifyContent: 'center' }}>
+                                <Text style={styles.tableHeaderText}>S Date</Text>
+                            </View>
+                            <View style={{ flex: .5, justifyContent: 'center' }}>
+                                <Text style={styles.tableHeaderText}>D Date</Text>
+                            </View>
+                            <View style={{ flex: .5, justifyContent: 'center' }}>
+                                <Text style={styles.tableHeaderText}>Members</Text>
+                            </View>
+                            <View style={{ flex: .5, justifyContent: 'center' }}>
+                                <Text style={styles.tableHeaderText}>Status</Text>
+                            </View>
+                        </View>
+                        {projectData?.map((val, key) => {
+                            const even = key % 2 == 0;
+                            const lastIndex = projectData?.length - 1 === key;
+                            return (
+                                <View
+                                    key={key}
+                                    style={[styles.tableRowMain, {
+                                        borderBottomLeftRadius: lastIndex ? 8 : 0,
+                                        borderBottomRightRadius: lastIndex ? 8 : 0,
+                                        backgroundColor: even ? "rgba(0,0,0,.05)" : "#FFF",
+                                    }]}>
+                                    <View style={{ flex: .5, justifyContent: 'center' }}>
+                                        <Text style={styles.tableRowText}>
+                                            {val?.name}
+                                        </Text>
+                                    </View>
+                                    <View style={{ flex: .5, justifyContent: 'center' }}>
+                                        <Text style={styles.tableRowText}>
+                                            {val?.start_date}
+                                        </Text>
+                                    </View>
+                                    <View style={{ flex: .5, justifyContent: 'center' }}>
+                                        <Text style={styles.tableRowText}>
+                                            {val?.deadline}
+                                        </Text>
+                                    </View>
+                                    <View style={{ flex: .5, justifyContent: 'center' }}>
+                                        <Text style={styles.tableRowText}>
+                                            {/* {val?.note} */}
+                                        </Text>
+                                    </View>
+                                    <View style={{ flex: .5, justifyContent: 'center' }}>
+                                        <Text style={styles.tableRowText}>
+                                            {val?.status === "1" ? "Not Started" : 
+                                            val?.status === "2" ? "Awaiting Feedback" :
+                                            val?.status === "3" ? "Testing" :
+                                            val?.status === "4" ? "Inprogess" :
+                                            val?.status === "5" ? "Completed" :
+                                            val?.status === "6" ? "On Hold" : null}
+                                        </Text>
+                                    </View>
+                                </View>
+                            )
+                        })}
+                    </View>
+                :null}
+            </View>
+        </ScrollView>
+    );
+};
+
+const styles = StyleSheet.create({
+    tableHeaderMain: {
+        flexDirection: "row",
+        marginTop: 14,
+        backgroundColor: "#FFF",
+        marginHorizontal: 14,
+        paddingHorizontal: 12,
+        paddingVertical: 14,
+        borderTopLeftRadius: 8,
+        borderTopRightRadius: 8,
+        borderBottomColor: "#dee2e6",
+        borderBottomWidth: 1,
+        shadowColor: "#EEEEEE",
+        shadowOffset: {
+            width: 0,
+            height: 6,
+        },
+        shadowOpacity: 0.37,
+        shadowRadius: 7.49,
+        elevation: 12,
+    },
+    tableHeaderText: {
+        color: "#000",
+        fontFamily: 'Prompt-Medium',
+        fontSize: 14,
+    },
+    tableRowMain: {
+        flexDirection: "row",
+        backgroundColor: "rgba(0,0,0,.05)",
+        marginHorizontal: 14,
+        paddingHorizontal: 12,
+        paddingVertical: 14,
+        // shadowColor: "#EEEEEE",
+        // shadowOffset: {
+        //   width: 0,
+        //   height: 6,
+        // },
+        // shadowOpacity: 0.37,
+        // shadowRadius: 7.49,
+        // elevation: 12,
+    },
+    tableRowText: {
+        color: "#212529",
+        fontFamily: 'Prompt-Light',
+        fontSize: 12,
+    },
+})
+
+export default ViewClient;

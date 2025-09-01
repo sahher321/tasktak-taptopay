@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "767162111839",
+    "project_id": "tasktak-mobile-app",
+    "storage_bucket": "tasktak-mobile-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:767162111839:android:beb1b1eb6f4a2c82c108ea",
+        "android_client_info": {
+          "package_name": "com.bmp.tasktak"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "767162111839-8emsa8pno4pqdio348qloh1af1fhl8ba.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.bmp.tasktak",
+            "certificate_hash": "c0696a4897ea4333ee51d63732f6355d86d41d0b"
+          }
+        },
+        {
+          "client_id": "767162111839-0bj1si089omdku3tiojn2pvmf9tps136.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDwE8-S-rITz7CxhkiaeTCGzNC4AmuHdeI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "767162111839-0bj1si089omdku3tiojn2pvmf9tps136.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "767162111839-tdbpg9as91u6jq91heg08q2rsfk7tobv.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.bmp.tasktak"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
