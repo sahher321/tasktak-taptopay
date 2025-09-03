@@ -105,9 +105,9 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-/* End PBXFrameworksBuildPhase section */
 
-/* Begin PBXGroup section */
+
+
 		00E356EF1AD99517003FC87E /* TaskTask_NewTests */ = {
 			isa = PBXGroup;
 			children = (

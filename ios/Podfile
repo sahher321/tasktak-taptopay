@@ -7,7 +7,6 @@ install! 'cocoapods', :deterministic_uuids => false
 target 'TaskTask_New' do
   config = use_native_modules!
 
-  # Flags change depending on the env values.
   flags = get_default_flags()
 
   pod 'Firebase', :modular_headers => true
