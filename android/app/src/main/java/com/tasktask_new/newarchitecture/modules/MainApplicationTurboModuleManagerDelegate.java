@@ -1,4 +1,4 @@
-package com.tasktask_new.newarchitecture.modules;
+package com.bmp.tasktak.newarchitecture.modules;
 
 import com.facebook.jni.HybridData;
 import com.facebook.react.ReactPackage;

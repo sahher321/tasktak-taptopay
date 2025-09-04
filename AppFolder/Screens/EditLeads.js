@@ -163,7 +163,6 @@ const EditNewLead = (props) => {
         getLeadDetail();
 
         //for Billing data
-
         let mapped = dummy.map((item, index) => {
             let obj = {
                 id: 1,

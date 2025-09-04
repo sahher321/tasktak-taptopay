@@ -1,4 +1,4 @@
-package com.tasktask_new.newarchitecture.components;
+package com.bmp.tasktak.newarchitecture.components;
 
 import com.facebook.jni.HybridData;
 import com.facebook.proguard.annotations.DoNotStrip;

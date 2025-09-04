@@ -1,4 +1,4 @@
-package com.tasktask_new;
+package com.bmp.tasktak;
 
 
 
@@ -12,7 +12,7 @@ import com.reactnativenavigation.react.NavigationReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.config.ReactFeatureFlags;
 import com.facebook.soloader.SoLoader;
-import com.tasktask_new.newarchitecture.MainApplicationReactNativeHost;
+import com.bmp.tasktak.newarchitecture.MainApplicationReactNativeHost;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
@@ -75,7 +75,7 @@ public class MainApplication extends NavigationApplication {
          We use reflection here to pick up the class that initializes Flipper,
         since Flipper library is not available in release mode
         */
-        Class<?> aClass = Class.forName("com.tasktask_new.ReactNativeFlipper");
+        Class<?> aClass = Class.forName("com.bmp.tasktak.ReactNativeFlipper");
         aClass
             .getMethod("initializeFlipper", Context.class, ReactInstanceManager.class)
             .invoke(null, context, reactInstanceManager);

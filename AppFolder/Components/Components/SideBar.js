@@ -14,15 +14,11 @@ let AllPermissionsData = [
     { feature_name: "MailBox", icon: require("../Assets/Dashboard/ic_1.png"), },
     { feature_name: "Invoice", icon: require("../Assets/Dashboard/ic_3.png"), },
     { feature_name: "Lead", icon: require("../Assets/Dashboard/ic_4.png"), },
-    //  { feature_name: "Milestone", icon: require("../Assets/Dashboard/ic_5.png"), },
     { feature_name: "Staffs", icon: require("../Assets/Dashboard/ic_6.png"), },
     { feature_name: "Project", icon: require("../Assets/Dashboard/ic_7.png"), },
     { feature_name: "Task", icon: require("../Assets/Dashboard/ic_8.png"), },
     { feature_name: "Ticket", icon: require("../Assets/Dashboard/ic_9.png"), },
-    //    { feature_name: "Credit Notes", icon: require("../Assets/Dashboard/ic_10.png"), },
-    // { feature_name: "Estimates", icon: require("../Assets/Dashboard/ic_11.png"), },
     { feature_name: "TimeSheet", icon: require("../Assets/Dashboard/ic_12.png"), },
-    //    { feature_name: "Expenses", icon: require("../Assets/Dashboard/ic_13.png"), },
     { feature_name: "Appointly", icon: require("../Assets/Dashboard/ic_14.png"), },
     { feature_name: "PayRoll", icon: require("../Assets/Dashboard/ic_14.png"), },
     { feature_name: "Proposals", icon: require("../Assets/Dashboard/ic_15.png"), },
@@ -57,7 +53,13 @@ const SideBar = (props) => {
                 GoToNextController("Tickets")
             } else if (item.feature_name == "Client" || item.feature_name == "Customer") {
                 if (item.feature_name == "Customer") {
-                    Navigation.push("AppStack", { component: { name: "Contacts", passProps: { permissions: capabilities["Customer"].permissions }, options: { topBar: { visible: true } } } });
+                    Navigation.push("AppStack", {
+                        component: {
+                            name: "Contacts",
+                            passProps: { permissions: capabilities["Customer"].permissions },
+                            options: { topBar: { visible: true } }
+                        }
+                    });
                     return;
                 }
                 GoToNextController("Contacts")
@@ -77,7 +79,7 @@ const SideBar = (props) => {
                 <View style={{justifyContent:"center"}}>
                     <Image 
                         style={{width:28,height:28,resizeMode:"contain",tintColor:"#000000"}}
-                        source={UserPermissions.permissions.length == 0 ? item.icon : {uri: item.icon}}
+                        source={item.icon}
                     />
                 </View>
                 <View style={{flex:1,justifyContent:"center",marginLeft:12}}>
@@ -89,8 +91,18 @@ const SideBar = (props) => {
         )
     };
 
+    // ✅ Safe fallback
+    const permissionsData =
+        (Array.isArray(UserPermissions.permissions) && UserPermissions.permissions.length > 0)
+            ? UserPermissions.permissions.filter(
+                (item) =>
+                    (item?.capability === "view" &&
+                        allowedFeatures.includes(item.feature_name)) ||
+                    (item?.capability === "view_own" && item?.feature_name !== "")
+            )
+            : AllPermissionsData;
+
     return (
-        // <View style={{flex:1}}>
         <Modal
             style={{margin:0}}
             height={height}
@@ -101,25 +113,21 @@ const SideBar = (props) => {
             animationIn="slideInLeft"
             animationOut="slideOutLeft"
             onBackdropPress={toggleModal}>
-            {/* <View style={{flex:1,backgroundColor:'#FFF',paddingTop:16}}> */}
-                <FlatList
-                    style={{flex:1,backgroundColor:'#FFF',paddingTop:16,paddingVertical:30,paddingHorizontal:20}}
-                    ListHeaderComponent={() => (
-                        <View>
-                            <Image
-                                source={require("../Assets/logo.png")}
-                                style={{width:180,height:60,resizeMode:"cover",marginBottom:12}}
-                            />
-                        </View>
-                    )}
-                    renderItem={({item, index}) => (<DashBoardCell item={item} index={index} />)}
-                    data={UserPermissions?.permissions?.length != undefined && UserPermissions.permissions.length == 0 ? AllPermissionsData :
-                    UserPermissions.permissions.filter((item, index) => ((item?.capability == "view" && allowedFeatures.indexOf(item.feature_name) != -1) || (item?.capability == "view_own" && item?.feature_name != "")))}
-                />
-            {/* </View> */}
+            <FlatList
+                style={{flex:1,backgroundColor:'#FFF',paddingTop:16,paddingVertical:30,paddingHorizontal:20}}
+                ListHeaderComponent={() => (
+                    <View>
+                        <Image
+                            source={require("../Assets/logo.png")}
+                            style={{width:180,height:60,resizeMode:"cover",marginBottom:12}}
+                        />
+                    </View>
+                )}
+                renderItem={({item, index}) => (<DashBoardCell item={item} index={index} />)}
+                data={permissionsData}
+            />
         </Modal>
-        // </View>
-  );
+    );
 };
 
 export default SideBar;

@@ -1,64 +1,60 @@
 import { getItem, setItem } from "./Api"
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 class USER_PERMISSIONS {
-
     permissions = []
     capabilities = {}
+    user_data = []
 
     constructor() {
-        this.retreivePermissions();
-        this.retreiveUserData();
-
+        this.retrievePermissions();
+        this.retrieveUserData();
     }
 
     setPermissions(data) {
-        this.permissions = data
-        setItem("user-permissions", data);
+        this.permissions = data || []; // ✅ fallback to []
+        setItem("user-permissions", data || []);
     }
 
     async removeItemValue(key) {
         try {
             await AsyncStorage.removeItem(key);
-            
             return true;
-        }
-        catch(exception) {
+        } catch (exception) {
             return false;
         }
     }
-    async retreivePermissions() {
-        let data = await getItem("user-permissions")
-        console.log(`Permissions`)
-        if (null) return;
-        this.permissions = data
+
+    async retrievePermissions() {
+        let data = await getItem("user-permissions");
+        console.log("Permissions");
+        if (!data) {  // ✅ proper null check
+            this.permissions = [];
+            return;
+        }
+        this.permissions = data;
         console.log(JSON.stringify(data, null, 2));
     }
-
-    user_data = []
-
-     
 
     setUserData(data) {
-        this.user_data = data
-        setItem("user-data", data);
+        this.user_data = data || [];
+        setItem("user-data", data || []);
     }
 
-    async retreiveUserData() {
-        let data = await getItem("user-data")
-        console.log(`user_data`)
-        if (null) return;
-        this.user_data = data
+    async retrieveUserData() {
+        let data = await getItem("user-data");
+        console.log("user_data");
+        if (!data) { // ✅ proper null check
+            this.user_data = [];
+            return;
+        }
+        this.user_data = data;
         console.log(JSON.stringify(data, null, 2));
     }
 }
 
-class USER_DATA {
+class USER_DATA {}
 
-    
+const UserPermissions = new USER_PERMISSIONS();
 
-}
-
-const UserPermissions = new USER_PERMISSIONS()
- 
 export default UserPermissions;
- 
