@@ -1,13 +1,6 @@
 import React from "react";
-import { View, Text, ActivityIndicator, Platform, Modal } from "react-native";
-const Loader = ({
-  color = "purple",
-  style,
-  size = 80,
-  name = "",
-  loading,
-  setLoading,
-}) => {
+import { View, ActivityIndicator, Modal } from "react-native";
+const Loader = ({ color = "purple", size = 80, loading }) => {
   return (
     <Modal style={{}} visible={loading} transparent={true}>
       <View
