@@ -8,11 +8,6 @@ import { CustomTextfield, CustomTextfieldBlank, GoToNextController } from '../Co
 import { AppTheme } from '../AppTheme/AppTheme';
 
 
-
-
-
-
-
 const EditStaff = (props) => {
     const {StaffDetail} = props;
     const [phonenumber, setphonenumber] = useState(StaffDetail?.phonenumber)
@@ -21,11 +16,8 @@ const EditStaff = (props) => {
     const [email, setemail] = useState(StaffDetail?.email)
     const [buttonLoader, setButtonLoader] = useState(false);
    
-   
-
     console.log("StaffDetail =====> ", StaffDetail.staffid);
 
-   
     const updateStaffHandle = async () => {
         setButtonLoader(true);
         var raw = JSON.stringify({

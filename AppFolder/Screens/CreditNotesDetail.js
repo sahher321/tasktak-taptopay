@@ -37,7 +37,7 @@ const CreditNotesDetails = (props) => {
 
                 <View style={{ flexDirection: "row", justifyContent: 'space-between', marginTop: 5 }}>
                     <Text style={{ fontSize: 16, fontWeight: "bold" }}>Boys Long Shirt White Size 08 yr 2021</Text>
-                    {/* <Text style={{ fontSize: 16, fontWeight: "normal", color: "#539A61", borderWidth: 1, borderColor: "#707070", borderRadius: 3, padding: 5 }}>Closed</Text> */}
+                    <Text style={{ fontSize: 16, fontWeight: "normal", color: "#539A61", borderWidth: 1, borderColor: "#707070", borderRadius: 3, padding: 5 }}>Closed</Text>
                 </View>
 
                

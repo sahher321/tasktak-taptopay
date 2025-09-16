@@ -115,32 +115,14 @@ catch(error) {
 
         apiPost()
     }, []);
-    // handleAnnouncementSHowHide = () => {
-
-    //     console.log("setHeightsetHeight", getHeight)
-
-    //     if (getOpacity == "flex") {
-    //         setHeight(50)
-    //         setOpacity("none")
-
-    //     }
-    //     else {
-    //         setHeight(130)
-    //         setOpacity("flex")
-
-    //     }
-    // };
+    
     const apiPost = async (s) => {
 
         console.log(`Announcement DATA`)
 
         axios.get(APP_URL.BaseUrl + GetAllAnnouncement, { "": "" })
             .then(data => {
-                // console.log(`Announcement DATA = ${JSON.stringify(data.data.data, null, 2)}`)
-                setAllAssigment(data.data.data);
-
-
-            })
+                setAllAssigment(data.data.data);})
             .catch(e => {
                 console.log(`Error =`, e)
             })
@@ -169,11 +151,8 @@ catch(error) {
     };
     const DashBoardCell = ({ item, index }) => {
 
-        const DashBoardItemColor = () => {
+      
 
-        }
-
-        // const DashBoardItemColors = ["#0A3ADD" , "#0A3ADD" , "" ,"" , "" , "","","","","","" , "" , "" ,"" , ""]
 
 
         const handleIconPress = () => {

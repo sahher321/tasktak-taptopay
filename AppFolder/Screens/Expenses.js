@@ -33,13 +33,7 @@ const Expenses = () => {
                 console.log(`Error =`, e)
 
             })
-
-
     }
-
-
-
-
 
     return (
         <View style={{ flex: 1, alignItems: "center" }}>
