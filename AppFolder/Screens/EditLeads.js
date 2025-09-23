@@ -211,11 +211,7 @@ const EditNewLead = (props) => {
     };
 
 
-
     const apiPost = async (s) => {
-        // setLoading(true)
-
-
         console.log(`url is =`, SetAppointments)
 
         axios.get( APP_URL.BaseUrl +  SetAppointments)
@@ -289,9 +285,6 @@ const EditNewLead = (props) => {
             })
             .catch(e => {
                 console.log(`Error =`, e)
-
-                // setLoading(false)
-
             })
     }
 
