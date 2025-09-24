@@ -1,35 +1,32 @@
-import * as React from 'react'
+import * as React from "react";
 
-import { StyleSheet, View, Text, Button } from 'react-native'
+import { StyleSheet, View, Text, Button } from "react-native";
 import DocumentPicker, {
   DirectoryPickerResponse,
   DocumentPickerResponse,
   isInProgress,
   types,
-} from 'react-native-document-picker'
-import { useEffect } from 'react'
+} from "react-native-document-picker";
+import { useEffect } from "react";
 
 export default function DocPicker() {
-  //   const [result, setResult] = React.useState<
-  //     Array<DocumentPickerResponse> | DirectoryPickerResponse | undefined | null
-  //   >()
-
   const [result, setResult] = React.useState();
 
   useEffect(() => {
-    console.log(JSON.stringify(result, null, 2))
-  }, [result])
+    console.log(JSON.stringify(result, null, 2));
+  }, [result]);
 
   const handleError = (err) => {
     if (DocumentPicker.isCancel(err)) {
-      console.warn('cancelled')
-      // User cancelled the picker, exit any dialogs or menus and move on
+      console.warn("cancelled");
     } else if (isInProgress(err)) {
-      console.warn('multiple pickers were opened, only the last will be considered')
+      console.warn(
+        "multiple pickers were opened, only the last will be considered"
+      );
     } else {
-      throw err
+      throw err;
     }
-  }
+  };
 
   return (
     <View style={styles.container}>
@@ -38,19 +35,19 @@ export default function DocPicker() {
         onPress={async () => {
           try {
             const pickerResult = await DocumentPicker.pickSingle({
-              presentationStyle: 'fullScreen',
-              copyTo: 'cachesDirectory',
-            })
-            setResult([pickerResult])
+              presentationStyle: "fullScreen",
+              copyTo: "cachesDirectory",
+            });
+            setResult([pickerResult]);
           } catch (e) {
-            handleError(e)
+            handleError(e);
           }
         }}
       />
       <Button
         title="open picker for multi file selection"
         onPress={() => {
-          DocumentPicker.pickMultiple().then(setResult).catch(handleError)
+          DocumentPicker.pickMultiple().then(setResult).catch(handleError);
         }}
       />
       <Button
@@ -61,7 +58,7 @@ export default function DocPicker() {
             type: [types.allFiles],
           })
             .then(setResult)
-            .catch(handleError)
+            .catch(handleError);
         }}
       />
       <Button
@@ -71,7 +68,7 @@ export default function DocPicker() {
             type: types.pdf,
           })
             .then(setResult)
-            .catch(handleError)
+            .catch(handleError);
         }}
       />
       <Button
@@ -79,32 +76,32 @@ export default function DocPicker() {
         onPress={() => {
           DocumentPicker.releaseSecureAccess([])
             .then(() => {
-              console.warn('releaseSecureAccess: success')
+              console.warn("releaseSecureAccess: success");
             })
-            .catch(handleError)
+            .catch(handleError);
         }}
       />
       <Button
         title="open directory picker"
         onPress={() => {
-          DocumentPicker.pickDirectory().then(setResult).catch(handleError)
+          DocumentPicker.pickDirectory().then(setResult).catch(handleError);
         }}
       />
 
       <Text selectable>Result: {JSON.stringify(result, null, 2)}</Text>
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
   box: {
     width: 60,
     height: 60,
     marginVertical: 20,
   },
-})
+});
