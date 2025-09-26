@@ -8,10 +8,12 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { Navigation } from "react-native-navigation";
+import Toast from "react-native-simple-toast";
+
+
 
 export const ScreenWidth = Dimensions.get("screen").width;
 export const Screenheight = Dimensions.get("screen").height;
-import Toast from "react-native-simple-toast";
 
 export const GoToNextController = (VcName) => {
   Navigation.push("AppStack", {

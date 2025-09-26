@@ -19,21 +19,12 @@ export const Selectset = ({ arraydata = data, selected, setSelected, onChange, s
 
   return (
     <>
-      <SafeAreaView>
         <SelectList
-          // onSelect={()=>{}}
           setSelected={(val) => {
-            // console.log(val)
-            // console.log(id)
             console.log("VAL")
             console.log(val)
             if (onChange != undefined)
               onChange()
-
-            // let ind = arraydata.findIndex(item => item.value == val);
-            // console.log("INDEX");
-            // console.log(ind);
-            // console.log(arraydata[ind]);
             if (setSelected != undefined)
               setSelected(val)
           }}
@@ -54,7 +45,6 @@ export const Selectset = ({ arraydata = data, selected, setSelected, onChange, s
           }}
           inputStyles={{ fontSize: 17, color: '#ccc' }}
         />
-      </SafeAreaView>
     </>
   );
 
