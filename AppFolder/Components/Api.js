@@ -26,23 +26,6 @@ export async function removeItem(key) {
     return await AsyncStorage.removeItem(key);
 }
 
-// export default {
-//     ,
-//     ,
-
-//     // getData = async () => {
-//     //     try {
-//     //       const value = await AsyncStorage.getItem('@baseurl')
-//     //       if(value !== null) {
-//     //         // value previously stored
-
-//     //         console.log ("valuevalue" , value)
-
-//     //       }
-//     //     } catch(e) {
-//     //       // error reading value
-//     //     }
-//     //   }
 export var BaseUrl = "https://nexttak.com"
 
 class URL {
@@ -61,9 +44,6 @@ class URL {
     }
     async changeAndSaveBaseUrl(newComponyUrl) {
 
-        // getItem("CompanyUrl").then((keyResult) => {
-        //     console.log(JSON.stringify(keyResult,null,2))
-        // })
         //DO THE STUFF HERE.
          this.BaseUrl = newComponyUrl;
         setItem("MeriKey", newComponyUrl);

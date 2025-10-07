@@ -170,47 +170,7 @@ const AddNewProject = () => {
     apiPost();
   }, []);
 
-  // const apiAddPro = () => {
-  //     try {
-  //         const formattedStartDate = moment(startDate).format('MM-DD-YYYY');
-  //         const formattedDeadlineDate = moment(deadlineDate).format('MM-DD-YYYY');
-  //         var formData = JSON.stringify({
-  //             name: proName,
-  //             clientid: contact,
-  //             billing_type: billingType,
-  //             start_date: formattedStartDate,
-  //             status: projectStatus,
-  //             progress_from_tasks: "",
-  //             project_cost: totalRate,
-  //             project_rate_per_hour: "",
-  //             estimated_hours: estimatedTime,
-  //             project_members: selectedTeams,
-  //             deadline: formattedDeadlineDate,
-  //             description: Description
-  //         });
 
-  //         console.log("formData =====> ", formData);
-
-  //         fetch('https://office-app.tasktak.com/api/projects',formData)
-  //         .then(response => {
-  //             console.log("Response status: ", response.status);
-  //             if (!response.ok) {
-  //                 throw new Error(`HTTP error! Status: ${response.status}`);
-  //             }
-
-  //             return response.json();
-  //         })
-  //         .then(result => {
-  //             alert("Project Added")
-  //             GoToNextController("MyProjects");
-  //         })
-  //         .catch(error => {
-  //             console.error("ERROR =====> ", error);
-  //         });
-  //     } catch (error) {
-  //         console.error("ERROR =====> ", error?.message);
-  //     }
-  // }
 
   const apiAddTask = async () => {
     const formattedStartDate = moment(startDate).format("MM-DD-YYYY");

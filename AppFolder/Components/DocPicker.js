@@ -10,10 +10,6 @@ import DocumentPicker, {
 import { useEffect } from "react";
 
 export default function DocPicker() {
-  //   const [result, setResult] = React.useState<
-  //     Array<DocumentPickerResponse> | DirectoryPickerResponse | undefined | null
-  //   >()
-
   const [result, setResult] = React.useState();
 
   useEffect(() => {

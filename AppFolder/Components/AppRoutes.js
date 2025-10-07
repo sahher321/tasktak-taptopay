@@ -11,11 +11,7 @@ export function toHome() {
     const selectedText = 12
     const isIOS = Platform.OS == "ios"
     Promise.all([
-        //IoIcon.getImageSource('md-home', 25, colors.darkPurple),
-        //   IoIcon.getImageSource('logo-youtube', 25, colors.darkPurple),
-        //   IoIcon.getImageSource('tv-outline', 25, colors.darkPurple),
-        //   IoIcon.getImageSource('tv-outline', 25, colors.darkPurple),
-        //   IoIcon.getImageSource('menu-sharp', 25, colors.darkPurple),
+        // IoIcon.getImageSource(isIOS ? 'ios-home' : 'md-home', 25, selectedTabColor),
     ]).then(
         ([
             firstTabIcon,
@@ -38,11 +34,8 @@ export function toHome() {
                         blurOnUnmount: true,
                         bottomTabs: {
                             borderWidth: 0,
-                            // borderColor: colors.bgPurple,
-                            // backgroundColor: colors.darkPurple,
                             elevation: 2,
                             currentTabIndex: 0,
-                            // fontFamily: customFont,
                             animate: true,
                             titleDisplayMode: 'alwaysShow',
                             preferLargeIcons: false,
@@ -66,32 +59,13 @@ export function toHome() {
                                                 topBar: {
                                                     visible: false,
                                                 },
-                                                // passProps: {
-                                                //   tabMainScreen: true,
-                                                // },
-                                                // hardwareBackButton: {
-                                                //   popStackOnPress: true,
-                                                //   // bottomTabsOnPress: backAction
-                                                // },
                                                 statusBar: {
                                                     drawBehind: true,
                                                     backgroundColor: 'transparent',
                                                     style: "light",
                                                     // visible: false,
                                                 },
-                                                // bottomTab: {
-                                                //     icon: isIOS ? require('../Assets/ic_timesheet.png') : require('../Assets/ic_timesheet.png'),
-                                                //     // icon: firstTabIcon,
-                                                //     //   icon: isAndroid ? require('../Assets/ic_timesheet.png') : require('../Assets/ic_timesheet.png'),
-                                                //     text: 'TimeSheets',
-                                                //     fontSize: textFontSize,
-                                                //     selectedFontSize: selectedText,
-                                                //     textColor: unSelectedTabColor,
-                                                //     iconColor: unSelectedTabColor,
-                                                //     // fontFamily: customFont,
-                                                   //  selectedTextColor: AppTheme.PrimaryColor,
-                                                   //  selectedIconColor: AppTheme.yellowButtonColor,
-                                                // },
+                                              
                                             },
                                         },
                                     },
@@ -129,10 +103,6 @@ export function toHome() {
                                                 passProps: {
                                                     tabMainScreen: true,
                                                 },
-                                                // hardwareBackButton: {
-                                                //   popStackOnPress: true,
-                                                //   bottomTabsOnPress: 'previous'
-                                                // },
                                                 statusBar: {
                                                     drawBehind: true,
                                                     backgroundColor: "transparent",
@@ -155,10 +125,6 @@ export function toHome() {
                                           iconColor: "#000000",
                                         selectedTextColor:  AppTheme.PrimaryColor,
                                         selectedIconColor:  AppTheme.PrimaryColor,
-                                        // fontFamily: customFont,
-                                        // iconInsets: _iconInsets,
-                                        // iconHeight: _iconHeight,
-                                        // iconWidth: _iconWidth,
                                     },
                                 },
                             },
@@ -179,10 +145,6 @@ export function toHome() {
                                                 passProps: {
                                                     tabMainScreen: true,
                                                 },
-                                                // hardwareBackButton: {
-                                                //   popStackOnPress: true,
-                                                //   bottomTabsOnPress: 'previous'
-                                                // }
                                                 statusBar: {
                                                     drawBehind: true,
                                                     backgroundColor: 'transparent',
@@ -210,9 +172,6 @@ export function toHome() {
                                         // fontFamily: customFont,
                                         selectedTextColor:  AppTheme.PrimaryColor,
                                         selectedIconColor:  AppTheme.PrimaryColor,
-                                        // iconInsets: _iconInsets,
-                                        // iconHeight: _iconHeight,
-                                        // iconWidth: _iconWidth,
                                     },
                                 },
                             },

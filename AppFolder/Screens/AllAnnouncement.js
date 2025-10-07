@@ -102,12 +102,6 @@ const AnnouncementView = ({ item }) => {
         >
           {<HTML source={{ html: item?.message }} />}
         </Text>
-
-        {/* <View style={{  flexDirection: "row", marginLeft: 5 }}>
-                    <Text style={{color: "blue"}}>View | </Text>
-                    <Text style={{color: "red"}}>Delete | </Text>
-                    <Text style={{color: "#FFD21F"}}>Create Appointment</Text>
-                </View> */}
       </View>
     </View>
   );
