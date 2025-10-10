@@ -78,13 +78,13 @@ const apiPost = async (s) => {
 };
 
 const AppointmentContact = () => {
+
   const [mainData, setMainData] = useState([]);
   const [leadsData, setLeadsData] = useState([]);
   const [contactata, setcontactata] = useState([]);
   const [appointmentTypetata, setappointmentType] = useState([]);
   const [staffmembersdata, setstaffmembers] = useState([]);
   const [startDate, setStartDate] = useState(new Date());
-
   const [related, setRelated] = useState([]);
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
   const [subject, setsubject] = useState("");
@@ -99,38 +99,14 @@ const AppointmentContact = () => {
   const [repeat, setrepeat] = useState("");
 
   useEffect(() => {
-    // console.log("api calledd funs")
-
-    //for dduummy data
-
-    // let mapped = dummy.map((item, index) => {
-    //   let obj = {
-    //     id: 1,
-    //     value: item.name
-    //   }
-    //   // console.log("MAP for index = ", index);
-    //   // console.log(obj);
-
-    //   return obj
-    // })
-
-    // console.log(mapped);
-    // setMainData(
-    //   [...mapped]
-    // )
     apiPost();
   }, []);
 
   const apiPost = async (s) => {
-    // setLoading(true)
-
     console.log(`url is =`, SetAppointments);
-
     axios
       .get(SetAppointments)
       .then(async (data) => {
-        // setLoading(false)
-
         console.log(
           `GetAllAppointments DATA = ${JSON.stringify(data.data.data, null, 2)}`
         );
@@ -147,9 +123,7 @@ const AppointmentContact = () => {
           return obj;
         });
         setMainData([...mapped]);
-
         let _leadsdata = data.data.data.leads;
-
         let mappedLeads = _leadsdata.map((item) => {
           let obj = {
             id: 1,
@@ -159,9 +133,7 @@ const AppointmentContact = () => {
           return obj;
         });
         setLeadsData([...mappedLeads]);
-
         let _contactdata = data.data.data.contacts;
-
         let contactsLeads = _contactdata.map((item) => {
           let obj = {
             id: 1,
@@ -172,11 +144,7 @@ const AppointmentContact = () => {
         });
         setcontactata([...contactsLeads]);
 
-        console.log("MAPPED contactsLeads- ", contactsLeads);
-        console.log(contactsLeads.length);
-
         let appointment_typesdata = data.data.data.appointment_types;
-
         let appointment_typesLeads = appointment_typesdata.map((item) => {
           let obj = {
             id: 1,
@@ -206,39 +174,11 @@ const AppointmentContact = () => {
 
         // console.log("MAPPED setstaffmembers- ", setstaffmembers)
         console.log(setstaffmembers.length);
-
-        // (item)));
-        // let mapped = _data.map((item, index) => {
-        //   let obj = {
-        //     id: item.id,
-        //     value: item.name
-        //   }
-        //   // mapped_array.push(obj)
-        //   // console.log("MAP for index = ", index);
-        //   // console.log(obj);
-
-        //   return obj
-        // })
-        // console.log(mapped);
-        // console.log(mapped.length);
         setTimeout(() => {
-          // setMainData(mapped);
         }, 500);
-        // setMainData([...mapped] );
-        // setMainData([
-        //   { key: '1', value: '0' },
-        //   { key: '1', value: '0' },
-        //   { key: '1', value: '0' }
-        // ]);
-
-        // setMainData(data.data.data);
-        // setApiData([])rr
-        // setDataAllProjects(data.data.data);
       })
       .catch((e) => {
         console.log(`Error =`, e);
-
-        // setLoading(false)
       });
   };
 

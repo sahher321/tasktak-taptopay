@@ -10,6 +10,7 @@ import { Navigation } from "react-native-navigation";
 
 
 handleNewCleintPressed = (value, item) => {
+
     if (value === "add") {
         GoToNextController("AddClient")
     } else if (value === "edit") {
@@ -27,6 +28,7 @@ handleNewCleintPressed = (value, item) => {
 
 
 const Contacts = (props) => {
+
     const [modalVisible, setModalVisible] = useState(false);
 
     const [dataAllStaffs, setDataAllStaffs] = useState([]);
@@ -38,9 +40,8 @@ const Contacts = (props) => {
     const isCreatable = permissions.indexOf("create") != -1
 
     useEffect(() => {
-        // console.log(" === props === ", permissions);
-        // console.log(" === capabilities === ", UserPermissions?.capabilities);
 
+        
         apiPost();
     }, [])
 

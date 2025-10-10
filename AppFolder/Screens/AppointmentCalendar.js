@@ -34,6 +34,7 @@ const customStyles = {
 };
 
 const AppointmentCalendar = () => {
+
   const [loading, setLoading] = useState(true);
   const [selectedDate, setSelectedDate] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
@@ -46,6 +47,7 @@ const AppointmentCalendar = () => {
   useEffect(() => {
     getAllAppointment();
   }, []);
+
   const getAllAppointment = () => {
     try {
       setLoading(true);
@@ -93,6 +95,7 @@ const AppointmentCalendar = () => {
       console.log("ERROR =====> ", error?.message);
     }
   };
+  
   const handleDayPress = (day) => {
     const isAppointment = appointments[day.dateString] !== undefined;
     // if (isAppointment) {
@@ -102,6 +105,7 @@ const AppointmentCalendar = () => {
     // setModalVisible(true);
     // }
   };
+
   const markedDates = {};
   Object.keys(appointments).forEach((key) => {
     markedDates[key] = {
@@ -109,6 +113,7 @@ const AppointmentCalendar = () => {
       customStyles: customStyles,
     };
   });
+
   const currentDate = new Date();
   const currentYear = currentDate.getFullYear();
   const currentMonth = currentDate.getMonth() + 1;

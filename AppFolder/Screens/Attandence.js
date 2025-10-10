@@ -15,6 +15,7 @@ const dummy = [
 ];
 
 const Attendance = () => {
+
     const [markV, setmarkV] = useState(null);
     const [loader, setLoader] = useState(true);
     const [buttonLoader, setButtonLoader] = useState(false);
@@ -25,7 +26,9 @@ const Attendance = () => {
     useEffect(() => {
         getLocation();
     }, []);
+
     const getLocation = async () => {
+
         setLoader(true);
         const hasLocationPermission = await hasLocationPermissions();
         if (!hasLocationPermission) {
@@ -58,6 +61,7 @@ const Attendance = () => {
         );
     };
     const hasLocationPermissions = async () => {
+
         if (Platform.OS === 'ios') {
             const hasPermission = await hasLocationPermissionsIOS();
             return hasPermission;
@@ -97,6 +101,7 @@ const Attendance = () => {
         return false;
     };
     const hasLocationPermissionsIOS = async () => {
+
         const openSetting = () => {
             Linking.openSettings().catch(() => {
                 Alert.alert('Unable to open settings');
@@ -124,7 +129,9 @@ const Attendance = () => {
         };
         return false;
     };
+
     const markAttendenceHandle = async () => {
+
         try {
             if (markV === null) {
                 alert("Please select Check-in type!");
@@ -164,6 +171,7 @@ const Attendance = () => {
         }
     };
     function DropPicker() {
+        
         const [open, setOpen] = useState(false);
         const [value, setValue] = useState(null);
         const [items, setItems] = useState([

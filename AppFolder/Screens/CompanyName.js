@@ -10,6 +10,7 @@ import { AppGrayColor } from "./Signup";
 import SearchableDropdown from 'react-native-searchable-dropdown';
 
 const CompanyName = () => {
+
   const [password, setPassword] = useState('')
   const [userName, setuserName] = useState('')
   const [getUserData, setUserData] = useState([]);
@@ -59,7 +60,6 @@ const styles = StyleSheet.create({
     padding: 8,
   },
 });
-
 
 
 
