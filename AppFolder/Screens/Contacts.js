@@ -39,9 +39,7 @@ const Contacts = (props) => {
     const isEditable = permissions.indexOf("edit") != -1
     const isCreatable = permissions.indexOf("create") != -1
 
-    useEffect(() => {
-
-        
+    useEffect(() => {   
         apiPost();
     }, [])
 
@@ -128,9 +126,6 @@ const Contacts = (props) => {
             })
     }
 
-
-
-
     const onSearch = (text) => {
         if (text.length > 0) {
             let sorted = dataAllStaffs.filter(function (item) {
@@ -144,7 +139,6 @@ const Contacts = (props) => {
 
         setSortedDataAllStaff(dataAllStaffs);
     }
-
 
     return (
         <View style={{ flex: 1, marginTop: '5%' }}>
