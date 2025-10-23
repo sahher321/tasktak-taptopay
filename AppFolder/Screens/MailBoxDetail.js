@@ -7,44 +7,30 @@ import Loader from "../Components/Loader";
 import UserPermissions from "../Components/UserPermissions";
 
 const MailBoxDetail = (props) => {
+
   const [searchText, setSearchText] = React.useState("");
-
   const [loading, setLoading] = useState(true);
-
   const [dataAllEmails, setdataAllEmails] = useState([]);
   const [sorteddataAllEmails, setSorteddataAllEmails] = useState([]);
 
   useEffect(() => {
     setLoading(false);
-
     apiPost();
   }, []);
 
   const apiPost = async (s) => {
     setLoading(true);
-
-    console.log(
-      `url is =`,
-      APP_URL.BaseUrl + getAllMails + UserPermissions.user_data[0]?.staffid
-    );
-
-    axios
-      .get(
+   axios.get(
         APP_URL.BaseUrl + getAllMails + UserPermissions.user_data[0]?.staffid,
         { "": "" }
       )
       .then((data) => {
         setLoading(false);
-
-        console.log(`getAllMails DATA = ${JSON.stringify(data.data, null, 2)}`);
-        // setApiData([])
         setdataAllEmails(data.data.data);
-
         setSorteddataAllEmails(data.data);
       })
       .catch((e) => {
         console.log(`Error =`, e);
-
         setLoading(false);
       });
   };

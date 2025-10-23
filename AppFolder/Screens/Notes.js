@@ -9,7 +9,7 @@ import {
   Button,
   TextInput,
   Keyboard,
-  Platform
+  Platform,
 } from "react-native";
 
 const isAndroid = Platform.OS == "android";
@@ -18,10 +18,10 @@ const viewPadding = 10;
 export default class Notes extends Component {
   state = {
     tasks: [],
-    text: ""
+    text: "",
   };
 
-  changeTextHandler = text => {
+  changeTextHandler = (text) => {
     this.setState({ text: text });
   };
 
@@ -30,11 +30,11 @@ export default class Notes extends Component {
 
     if (notEmpty) {
       this.setState(
-        prevState => {
+        (prevState) => {
           let { tasks, text } = prevState;
           return {
             tasks: tasks.concat({ key: tasks.length, text: text }),
-            text: ""
+            text: "",
           };
         },
         () => Tasks.save(this.state.tasks)
@@ -42,9 +42,9 @@ export default class Notes extends Component {
     }
   };
 
-  deleteTask = i => {
+  deleteTask = (i) => {
     this.setState(
-      prevState => {
+      (prevState) => {
         let tasks = prevState.tasks.slice();
 
         tasks.splice(i, 1);
@@ -58,7 +58,8 @@ export default class Notes extends Component {
   componentDidMount() {
     Keyboard.addListener(
       isAndroid ? "keyboardDidShow" : "keyboardWillShow",
-      e => this.setState({ viewPadding: e.endCoordinates.height + viewPadding })
+      (e) =>
+        this.setState({ viewPadding: e.endCoordinates.height + viewPadding })
     );
 
     Keyboard.addListener(
@@ -66,7 +67,7 @@ export default class Notes extends Component {
       () => this.setState({ viewPadding: viewPadding })
     );
 
-    Tasks.all(tasks => this.setState({ tasks: tasks || [] }));
+    Tasks.all((tasks) => this.setState({ tasks: tasks || [] }));
   }
 
   render() {
@@ -74,7 +75,9 @@ export default class Notes extends Component {
       <View
         style={[styles.container, { paddingBottom: this.state.viewPadding }]}
       >
-        <Text style={{marginTop : 0 , fontSize : 18 , fontWeight : "bold"}}>Notes</Text>
+        <Text style={{ marginTop: 0, fontSize: 18, fontWeight: "bold" }}>
+          Notes
+        </Text>
 
         <TextInput
           style={styles.textInput}
@@ -88,19 +91,16 @@ export default class Notes extends Component {
         <FlatList
           style={styles.list}
           data={this.state.tasks}
-          renderItem={({ item, index }) =>
+          renderItem={({ item, index }) => (
             <View>
               <View style={styles.listItemCont}>
-                <Text style={styles.listItem}>
-                  {item.text}
-                </Text>
+                <Text style={styles.listItem}>{item.text}</Text>
                 <Button title="X" onPress={() => this.deleteTask(index)} />
               </View>
               <View style={styles.hr} />
-            </View>}
+            </View>
+          )}
         />
-        
-      
       </View>
     );
   }
@@ -113,7 +113,7 @@ let Tasks = {
     );
   },
   convertToStringWithSeparators(tasks) {
-    return tasks.map(task => task.text).join("||");
+    return tasks.map((task) => task.text).join("||");
   },
   all(callback) {
     return AsyncStorage.getItem("TASKS", (err, tasks) =>
@@ -122,7 +122,7 @@ let Tasks = {
   },
   save(tasks) {
     AsyncStorage.setItem("TASKS", this.convertToStringWithSeparators(tasks));
-  }
+  },
 };
 
 const styles = StyleSheet.create({
@@ -130,27 +130,27 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-   // backgroundColor: "#F5FCFF",
+    // backgroundColor: "#F5FCFF",
     padding: viewPadding,
-    paddingTop: 20
+    paddingTop: 20,
   },
   list: {
-    width: "100%"
+    width: "100%",
   },
   listItem: {
     paddingTop: 2,
     paddingBottom: 2,
-    fontSize: 18
+    fontSize: 18,
   },
   hr: {
     height: 1,
-    backgroundColor: "gray"
+    backgroundColor: "gray",
   },
   listItemCont: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    marginEnd : 20
+    marginEnd: 20,
   },
   textInput: {
     height: 40,
@@ -159,10 +159,9 @@ const styles = StyleSheet.create({
     borderColor: "gray",
     borderWidth: isAndroid ? 0 : 1,
     width: "100%",
-    marginTop : 20,
-    marginBottom : 20
-
-  }
+    marginTop: 20,
+    marginBottom: 20,
+  },
 });
 
 AppRegistry.registerComponent("Notes", () => Notes);

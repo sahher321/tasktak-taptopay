@@ -140,7 +140,7 @@ const StaffView = ({ item, index, onPress }) => {
 
                 <Text style={{ fontSize: 15, marginTop: 3 }}>{item.prefix + item.number}</Text>
                 <View style={{ flexDirection: "row" }}>
-                    <TouchableOpacity 
+                    <TouchableOpacity
                         activeOpacity={.7}
                         onPress={() => {
                             Navigation.push("AppStack", {
@@ -155,7 +155,7 @@ const StaffView = ({ item, index, onPress }) => {
                         <Text style={{ color: "blue" }}>View |</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity 
+                    <TouchableOpacity
                         activeOpacity={.7}
                         onPress={handleDelettePressed}>
                         <Text style={{ color: "red" }}>Delete</Text>

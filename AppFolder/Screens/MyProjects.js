@@ -24,13 +24,13 @@ import moment from "moment";
 import Loader from "../Components/Loader";
 import { apiDeletePost } from "../Components/ApiDelete";
 import UserPermissions from "../Components/UserPermissions";
+
 const FirstRoute = ({ index }) => {
+  
   const [dataAllProjects, setDataAllProjects] = useState([]);
   const [loading, setLoading] = useState(false);
-
   const permissions =
     UserPermissions?.capabilities["projects"]?.permissions || [];
-
   const isDeletable = permissions.indexOf("delete") != -1;
   const isEditable = permissions.indexOf("edit") != -1;
   const isCreatable = permissions.indexOf("create") != -1;
@@ -45,6 +45,7 @@ const FirstRoute = ({ index }) => {
         },
       });
     };
+
     return (
       <TouchableOpacity onPress={projectTap}>
         <View
@@ -152,7 +153,6 @@ const FirstRoute = ({ index }) => {
 
   useEffect(() => {
     setLoading(false);
-
     apiPost();
   }, []);
 
