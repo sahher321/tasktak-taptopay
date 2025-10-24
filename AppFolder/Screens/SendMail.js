@@ -17,6 +17,7 @@ import DocumentPicker from "react-native-document-picker";
 import UserPermissions from "../Components/UserPermissions";
 
 const SendMail = () => {
+
   const [toEmail, setToEmail] = useState("");
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
@@ -38,6 +39,7 @@ const SendMail = () => {
       console.log("Error picking document:", err);
     }
   };
+
   const sendEmailHandle = () => {
     try {
       if (toEmail == "") {
@@ -66,6 +68,7 @@ const SendMail = () => {
       console.log("ERROR =====> ", error?.message);
     }
   };
+  
   const postApiHandle = () => {
     try {
       setButtonLoader(true);
