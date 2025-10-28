@@ -292,7 +292,7 @@ const ViewClient = (props) => {
                 <View style={{ flex: 0.4, justifyContent: "center" }}>
                   <Text style={styles.tableHeaderText}>D Date</Text>
                 </View>
-               
+
                 <View style={{ flex: 0.4, justifyContent: "center" }}>
                   <Text style={styles.tableHeaderText}>Status</Text>
                 </View>
@@ -328,7 +328,7 @@ const ViewClient = (props) => {
                     <View style={{ flex: 0.4, justifyContent: "center" }}>
                       <Text style={styles.tableRowText}>{val?.deadline}</Text>
                     </View>
-             
+
                     <View style={{ flex: 0.4, justifyContent: "center" }}>
                       <Text style={styles.tableRowText}>
                         {val?.status === "1"
@@ -416,7 +416,7 @@ const ViewClient = (props) => {
                         {moment(val?.duedate).format("DD-MM-YY")}
                       </Text>
                     </View>
-         
+
                     <View style={{ flex: 0.4, justifyContent: "center" }}>
                       <Text style={styles.tableRowText}>
                         {val?.status === "1"
