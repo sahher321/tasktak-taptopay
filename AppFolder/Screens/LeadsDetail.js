@@ -112,7 +112,6 @@ const FirstRoute = ({ props }) => {
             <Text style={{ fontSize: 16, fontWeight: "bold" }}>
               Lead Information
             </Text>
-            {/* <Text style={{ fontSize: 16, fontWeight: "normal", color: "#539A61", borderWidth: 1, borderColor: "#707070", borderRadius: 3, padding: 5 }}>Closed</Text> */}
           </View>
 
           <Text style={{ fontSize: 14, fontWeight: "normal", lineHeight: 30 }}>
@@ -140,12 +139,7 @@ const FirstRoute = ({ props }) => {
             Zip Code: {item?.zip || "-"}
           </Text>
 
-          {/* <Text style={{
-                        fontSize: 14, fontWeight: "normal", lineHeight: 30,
-                    }}>Reference #: {item?.company || "-"} </Text>
-
-                    <Text style={{ fontSize: 14, fontWeight: "normal", lineHeight: 30 }}>Project: {item?.company || "-"}</Text> */}
-        </View>
+         
 
         <View
           style={{
@@ -286,7 +280,6 @@ const ThirdRoute = ({ props }) => {
         style={{}}
         keyExtractor={(_, index) => String(index)}
         renderItem={TaskDetail}
-        // data={["To Do", "Pending", "In Progress", "Done", "Review", "To Do", "Pending", "In Progress", "Done", "Review"]}
 
         data={dataAllTasks}
       />

@@ -703,16 +703,6 @@ const EditTask = (props) => {
             />
           </View>
 
-          {/* <View style={styles.MarginTop}>
-                        <Text style={styles.labelText}>
-                            Projects
-                        </Text>
-                        <Selectset arraydata={mainData} title='Projects' selected={related} setSelected={setRelated} value={subject} onChange={async (e) => {
-                            console.log("NEW AP CALLING");
-                            //  apiPost()
-                        }} />
-                    </View> */}
-
           <View style={styles.MarginTop}>
             <Text style={styles.labelText}>Assignees</Text>
             <Multiselection

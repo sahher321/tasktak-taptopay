@@ -224,19 +224,6 @@ const Lead = () => {
 
 const ProjectDetail = ({ item, apiPost }) => {
   const projectTap = () => {
-    //console.log(`Item =>` , calculate('2022-09-13 07:39:07', '2022-09-16 11:41:52'))
-
-    // 79
-
-    //   2020-09-29 07:39:07
-    //    calculate('02-12-2021 04:30:00 PM', '05-12-2021 04:10:00 PM');
-    // return;
-
-    //    console.log ("items in lead" , item)
-
-    //    return
-    //  GoToNextController("ProjectDetail")
-
     Navigation.push("AppStack", {
       component: {
         passProps: { item },

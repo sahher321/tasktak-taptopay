@@ -168,10 +168,7 @@ const StaffView = ({ item, index, onPress }) => {
                 <Text style={{ fontSize: 15, marginLeft: 5, marginTop: 3 }}>{"$" + item.total}</Text>
 
                 <Text style={{ fontSize: 15, marginLeft: 5, marginTop: 3 }}>{"Paid"}</Text>
-                {/* <View style={{  flexDirection: "row", marginLeft: 5 }}>
-                    <Text style={{color: "blue"}}>View | </Text>
-                    <Text style={{color: "red"}}>Delete</Text>
-                 </View> */}
+              
             </View>
         </View>
     )

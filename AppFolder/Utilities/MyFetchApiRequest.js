@@ -1,12 +1,10 @@
-import axios from 'axios';
+import axios from "axios";
 
-export const MyAxiosRequest = async ()=> {
+export const MyAxiosRequest = async () => {
+  const response = await axios({
+    method: "post",
+    url: "https://jsonplaceholder.typicode.com/posts",
+  });
 
-const response = await axios ({
-    method: 'post',
-    url:'https://jsonplaceholder.typicode.com/posts',
-});
-
-return response;
-
-}
+  return response;
+};

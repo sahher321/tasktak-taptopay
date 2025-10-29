@@ -56,20 +56,6 @@ const ExpenseDetail = (props) => {
           </Text>
         </View>
 
-        {/* <View style={{ flexDirection: "row", justifyContent: 'space-between', marginTop: 5 }}>
-                    <Text style={{ fontSize: 16, fontWeight: "bold" }}>Credit Used</Text>
-                    <Text style={{ fontSize: 16, fontWeight: "normal" }}>C$26.00</Text>
-                </View>
-               
-                <View style={{ flexDirection: "row", justifyContent: 'space-between', marginTop: 5 }}>
-                    <Text style={{ fontSize: 16, fontWeight: "bold" }}>Refund</Text>
-                    <Text style={{ fontSize: 16, fontWeight: "normal" }}>C$26.00</Text>
-                </View> */}
-
-        {/* <View style={{ flexDirection: "row", justifyContent: 'space-between', marginTop: 5 }}>
-                    <Text style={{ fontSize: 16, fontWeight: "bold" }}>Credits Remaining</Text>
-                    <Text style={{ fontSize: 16, fontWeight: "normal" }}>C$26.00</Text>
-                </View> */}
       </View>
     </View>
   );
